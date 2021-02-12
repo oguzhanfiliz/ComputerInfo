@@ -6,14 +6,30 @@ using System.Management;
 using System.Collections;
 using System.Windows.Forms;
 using System.Net;
+using System.IO;
+
 
 public static class HardwareInfo
 {
-    ///  
+    /*   public class disk
+       {
+           public string name { get; set; }
+           public string DriveType { get; set; }
+           public string VolumeLabel { get; set; }
+           public string DriveFormat { get; set; }
+           public string AvailableFreeSpace { get; set; }
+           public string TotalFreeSpace { get; set; }
+           public string TotalSize { get; set; }
+
+
+       }
+    */
+
+
+    //get all disk info 
+ 
     /// Retrieving Processor Id.
-    ///  
-    ///  
-    /// 
+
     public static String GetProcessorId()
     {
 
@@ -28,7 +44,28 @@ public static class HardwareInfo
         }
         return Id;
 
-    }    
+    }   
+    public static List<string> GetHddInfo()
+    {
+
+        List<String> result;
+
+        var query2 = new WqlObjectQuery("SELECT * FROM Win32_DiskDrive");
+        using (var searcher = new ManagementObjectSearcher(query2))
+        {
+            result = searcher.Get()
+                             .OfType<ManagementObject>()
+                             .Select(o => o.Properties["DeviceID"].Value.ToString()
+                             + " - " + o.Properties["SerialNumber"].Value.ToString()
+                              + " - " + o.Properties["Description"].Value.ToString()
+                               //+ " - " + o.Properties["Availability"].Value.ToString()
+                               + " - " + o.Properties["Model"].Value.ToString()
+                                 + " - " + o.Properties["Size"].Value.ToString()
+                                  + " - " + o.Properties["SystemName"].Value.ToString())
+                             .ToList();
+        }
+        return result;
+    }
     public static String getProcessorType()
     {
 
@@ -68,7 +105,6 @@ public static class HardwareInfo
     ///  
     /// 
 
-
     public static String GetHDDSerialNo()
     {
         ManagementClass mangnmt = new ManagementClass("Win32_LogicalDisk");
@@ -82,17 +118,21 @@ public static class HardwareInfo
     }
     public static String GetHddSize()
     {
+        long memory=0;
         var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_DiskDrive");
         string Model, InterfaceType, Caption, SerialNo = "", Capabilities;
         foreach (ManagementObject wmi_HD in searcher.Get())
         {
-            Capabilities= wmi_HD["size"].ToString() ;
+            //  mCap = Convert.ToInt64(obj["Capacity"]);
+            // MemSize += mCap;
+            memory = Convert.ToInt64(wmi_HD["size"])/ 1048576;
+            Capabilities = wmi_HD["size"].ToString() ;
             Model = wmi_HD["Model"].ToString();
             InterfaceType = wmi_HD["InterfaceType"].ToString();
             Caption = wmi_HD["Caption"].ToString();
             SerialNo = wmi_HD.GetPropertyValue("SerialNumber").ToString();
            // CapabilitiesInt = Convert.ToInt32(Capabilities) / 1073741824;
-            return Capabilities;
+            return memory.ToString()+"GB";
          
         }
         return SerialNo;
@@ -335,6 +375,29 @@ public static class HardwareInfo
     /// method for retrieving the CPU Manufacturer
     /// using the WMI class
     ///
+
+    public static string GetMemorySpeed()
+    {
+        String dd="";
+        var searcher = new ManagementObjectSearcher(
+            "select MaxClockSpeed from Win32_Processor");
+        foreach (var item in searcher.Get())
+        {
+            var clockSpeed = (uint)item["MaxClockSpeed"];
+            return clockSpeed.ToString();
+
+        }
+        return dd;
+        /*  ManagementClass mc = new ManagementClass("Win32_PhysicalMemory");
+          ManagementObjectCollection moc = mc.GetInstances();
+          string MemorySpeed = String.Empty;
+          foreach (ManagementObject mo in moc)
+          {
+              MemorySpeed = mo.Properties["MaxClockSpeed"].Value.ToString();
+          }
+
+          return MemorySpeed;*/
+    }
     public static string GetCPUManufacturer()
     {
         string cpuMan = String.Empty;
@@ -495,12 +558,12 @@ public static class HardwareInfo
         return info;
     } 
     //ip bilgileri
-    public static String  getIpinfo()
+  /*  public static String  getIpinfo()
     {
         string host = Dns.GetHostName();
         IPHostEntry ip = Dns.GetHostByName(host);
         return ip.AddressList[0].ToString();
         //birden fazla ip olabilceğinden burada ilk bulunanı alıyoruz.
-    }
+    }*/
 
 }
