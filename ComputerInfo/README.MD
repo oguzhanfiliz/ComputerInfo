@@ -1,4 +1,4 @@
-# Hardware Info 
-Driver bilgilerini toplamak için geliştirdiğimiz bu programa farklı bir yorum getirerek bilgileri yazdığımız küçük fonksiyonlardan isteyerek json haline getirmeyi planladık. Programın geliştirmesi tamamlandığında bizim için kurumumuzdaki bilgisayarların donanım bilgilerini kullanarak kullandığımız sisteme entegre etmek adına json dosyası üretecek.
+﻿# HardwareInfo
 
-Github versiyonunda ise form üzerinden verileri alabilirken aynı zamanda klasöre json dosyası oluşturan bir program olarak bırakılabilir.
+We developed this program to collect hardware information of the computers in the institution.
+Although the program will give the information as json for us, I will create a form application for you in the future. But it will still generate a json file at the back
