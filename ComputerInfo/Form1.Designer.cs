@@ -48,7 +48,12 @@ namespace ComputerInfo
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label10 = new System.Windows.Forms.Label();
+            this.monitor = new System.Windows.Forms.Label();
+            this.monitorinf = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -217,16 +222,55 @@ namespace ComputerInfo
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 288);
+            this.dataGridView1.Location = new System.Drawing.Point(-12, 270);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 179);
             this.dataGridView1.TabIndex = 17;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(104, 112);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Ekran Kartı";
+            // 
+            // monitor
+            // 
+            this.monitor.AutoSize = true;
+            this.monitor.Location = new System.Drawing.Point(376, 53);
+            this.monitor.Name = "monitor";
+            this.monitor.Size = new System.Drawing.Size(72, 13);
+            this.monitor.TabIndex = 19;
+            this.monitor.Text = "Monitör Sayısı";
+            // 
+            // monitorinf
+            // 
+            this.monitorinf.AutoSize = true;
+            this.monitorinf.Location = new System.Drawing.Point(530, 53);
+            this.monitorinf.Name = "monitorinf";
+            this.monitorinf.Size = new System.Drawing.Size(72, 13);
+            this.monitorinf.TabIndex = 20;
+            this.monitorinf.Text = "Monitör Sayısı";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(-1, 455);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(1289, 195);
+            this.dataGridView2.TabIndex = 21;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1300, 662);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.monitorinf);
+            this.Controls.Add(this.monitor);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.OperatingSystem);
@@ -247,9 +291,10 @@ namespace ComputerInfo
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = "Kozid Donanım Bilgileri";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,6 +321,10 @@ namespace ComputerInfo
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label monitor;
+        private System.Windows.Forms.Label monitorinf;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 

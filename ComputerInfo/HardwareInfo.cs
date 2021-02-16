@@ -66,6 +66,43 @@ public static class HardwareInfo
         }
         return result;
     }
+    public static String getGraphicsCard()
+    {
+        ManagementObjectSearcher graphics = new ManagementObjectSearcher("Select * From Win32_VideoController");
+        string temp = "";
+        foreach (ManagementObject Mobject in graphics.Get())
+        {
+             temp =  Mobject["name"].ToString() + " " + Mobject["AdapterRam"].ToString();
+        }
+        return temp; 
+    }  
+    public static List<string> getProgramList()
+    {
+        List<string> program = new List<string>();
+        ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_Product");
+        foreach (ManagementObject mo in mos.Get())
+        {
+            program.Add(mo["Caption"].ToString());
+        }
+        return program; 
+    } 
+    
+    
+    
+
+    public static List<string> getMonitorCount()
+    {
+         
+        List<string> monitor = new List<string>();
+        foreach (var screen in System.Windows.Forms.Screen.AllScreens)
+        {
+            monitor.Add(screen.DeviceName.ToString() + "-" + screen.Bounds.ToString() + "-" + screen.WorkingArea.ToString() + "-" + screen.Primary.ToString() + "-Ekran Sayısı" + Screen.AllScreens.Length) ;
+            
+            
+        }
+        return monitor; 
+    }
+
     public static String getProcessorType()
     {
 
