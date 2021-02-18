@@ -24,8 +24,8 @@ namespace ComputerInfo
         private void Form1_Load(object sender, EventArgs e)
         {
             {
-              
 
+             
                 //dataGridView1.DataSource = GetHddInfo();
                 // HddSize.Text = HardwareInfo.GetHddInfo().ToString() ;
 
@@ -61,25 +61,31 @@ namespace ComputerInfo
                     indiss++;
                     dataGridView2.DataSource = tablo2;
                 }
-               
-                DataTable tablo3 = new DataTable();
-                tablo3.Columns.Add("ID", typeof(int));
-                tablo3.Columns.Add("Properties", typeof(string));
-                dataGridView2.DataSource = tablo3;
 
-                int indisss = 0;
-                List<string> resultss = getProgramList();
+                /*
+                 * Program bilgileri
+                 * 
+                 * DataTable tablo3 = new DataTable();
+                 tablo3.Columns.Add("ID", typeof(int));
+                 tablo3.Columns.Add("Properties", typeof(string));
+                 dataGridView2.DataSource = tablo3;
 
-                foreach (string tmp in resultss)
-                {
-                    tablo3.Rows.Add(indisss, tmp);
-                    indisss++;
-                    dataGridView2.DataSource = tablo3;
-                }
+                 int indisss = 0;
+                 List<string> resultss = getProgramList();
+
+                 foreach (string tmp in resultss)
+                 {
+                     tablo3.Rows.Add(indisss, tmp);
+                     indisss++;
+                     dataGridView2.DataSource = tablo3;
+                 }*/
                 //monitorinf.Text = HardwareInfo.getMonitorCount();
-                HddSize.Text = HardwareInfo.getGraphicsCard();
-                RamSlotNumber.Text = HardwareInfo.GetNoRamSlots();
-                RamSizeLabel.Text = HardwareInfo.GetPhysicalMemory();
+                List<string> aab = getGraphicsCard();
+                listBox1.DataSource = aab;
+                List<string> ram = getAllPhysicalMemory();
+                listBox2.DataSource = ram;
+                // HddSize.Text = HardwareInfo.getGraphicsCard();
+                RamSizeLabel.Text = HardwareInfo.GetDefaultIPGateway();
                 MotherboardMaker.Text = HardwareInfo.GetBoardMaker();
                 MotherboardSerial.Text = HardwareInfo.GetBoardProductId();
                 GpuName.Text = HardwareInfo.getGpuinformation();

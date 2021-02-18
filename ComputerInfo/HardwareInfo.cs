@@ -66,13 +66,23 @@ public static class HardwareInfo
         }
         return result;
     }
-    public static String getGraphicsCard()
+    public static List<string> getGraphicsCard()
     {
+        List<String> temp = new List<string>();
         ManagementObjectSearcher graphics = new ManagementObjectSearcher("Select * From Win32_VideoController");
-        string temp = "";
-        foreach (ManagementObject Mobject in graphics.Get())
+        ManagementObjectCollection oCollection = graphics.Get();
+        //string temp = "";
+        string a ;
+        int ram;
+        long b; 
+        foreach (ManagementObject Mobject in oCollection)
         {
-             temp =  Mobject["name"].ToString() + " " + Mobject["AdapterRam"].ToString();
+            a = Mobject["AdapterRAM"].ToString();
+            b = Convert.ToInt64(Mobject["ConfigManagerUserConfig"]);
+            ram = Convert.ToInt32(a)/ 1048576;
+            temp.Add(Mobject["name"].ToString() + " ram " + ram+" MB"+" -- "+b+" bit");
+           
+
         }
         return temp; 
     }  
@@ -101,7 +111,7 @@ public static class HardwareInfo
             
         }
         return monitor; 
-    }
+    }   
 
     public static String getProcessorType()
     {
@@ -117,9 +127,9 @@ public static class HardwareInfo
         }
         return Id;
 
-    }  
+    }
 
-    //ekran kartı gpu
+    //ekran kartı gpuCurrentRefreshRate
     public static String getGpuinformation()
     {
 
@@ -363,11 +373,42 @@ public static class HardwareInfo
         return "User Account Name: Unknown";
 
     }
+
+
+
+  public static List<string> getAllPhysicalMemory()
+    {
+
+        List<String> temp = new List<string>();
+
+        ManagementScope oMs = new ManagementScope();
+        ObjectQuery oQuery = new ObjectQuery("SELECT * FROM Win32_PhysicalMemory");
+        ManagementObjectSearcher oSearcher = new ManagementObjectSearcher(oMs, oQuery);
+        ManagementObjectCollection oCollection = oSearcher.Get();
+        long MemSize = 0;
+        long mCap = 0;
+        int RamSlots = 1;
+        string ek;
+        temp.Add("Ram Bilgileri");
+        foreach (ManagementObject obj in oCollection)
+        {
+            mCap = Convert.ToInt64(obj["Capacity"]);
+            MemSize += mCap;
+            MemSize = (MemSize / 1024) / 1024 /1024;
+            ek = obj["Speed"].ToString() ;
+            temp.Add("Ram Boyutu " + MemSize.ToString()+"GB Ram Slotu " + RamSlots + " Ram Hızı " + ek+" Mhz ");
+            RamSlots++;
+
+        }
+
+        return temp;
+
+    }
     ///  
     /// Retrieving Physical Ram Memory.
     ///  
-    /// Ram Boyutu
-    ///  
+    /// Ram Boyutunu getirir mb cinsinden.
+    /*
     public static string GetPhysicalMemory()
     {
         ManagementScope oMs = new ManagementScope();
@@ -383,16 +424,18 @@ public static class HardwareInfo
         {
             mCap = Convert.ToInt64(obj["Capacity"]);
             MemSize += mCap;
+
+
         }
         MemSize = (MemSize / 1024) / 1024;
         return MemSize.ToString() + "MB";
-    }
+    }*/
     ///  
     /// Retrieving No of Ram Slot on Motherboard.
     ///  
     /// Ram Slotu
-    ///  
-    public static string GetNoRamSlots()
+    ///  İstenirse açılabilir çözüm uygulandı sadece ram slot sayısını getirir.
+    /*public static string GetNoRamSlots()
     {
 
         int MemSlots = 0;
@@ -407,6 +450,7 @@ public static class HardwareInfo
         }
         return MemSlots.ToString();
     }
+     */
     //Get CPU Temprature.
     ///  
     /// method for retrieving the CPU Manufacturer
@@ -420,8 +464,8 @@ public static class HardwareInfo
             "select MaxClockSpeed from Win32_Processor");
         foreach (var item in searcher.Get())
         {
-            var clockSpeed = (uint)item["MaxClockSpeed"];
-            return clockSpeed.ToString();
+                var clockSpeed = (uint)item["MaxClockSpeed"];
+                return clockSpeed.ToString();
 
         }
         return dd;

@@ -31,7 +31,6 @@ namespace ComputerInfo
         {
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.RamSlotNumber = new System.Windows.Forms.Label();
             this.RamSizeLabel = new System.Windows.Forms.Label();
             this.HddSize = new System.Windows.Forms.Label();
             this.MotherboardMaker = new System.Windows.Forms.Label();
@@ -39,9 +38,7 @@ namespace ComputerInfo
             this.GpuName = new System.Windows.Forms.Label();
             this.Cpu = new System.Windows.Forms.Label();
             this.OperatingSystem = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,6 +49,8 @@ namespace ComputerInfo
             this.monitor = new System.Windows.Forms.Label();
             this.monitorinf = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -74,15 +73,6 @@ namespace ComputerInfo
             this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Donanım bilgileri";
-            // 
-            // RamSlotNumber
-            // 
-            this.RamSlotNumber.AutoSize = true;
-            this.RamSlotNumber.Location = new System.Drawing.Point(192, 53);
-            this.RamSlotNumber.Name = "RamSlotNumber";
-            this.RamSlotNumber.Size = new System.Drawing.Size(80, 13);
-            this.RamSlotNumber.TabIndex = 5;
-            this.RamSlotNumber.Text = "Ram Slot Sayısı";
             // 
             // RamSizeLabel
             // 
@@ -147,15 +137,6 @@ namespace ComputerInfo
             this.OperatingSystem.TabIndex = 16;
             this.OperatingSystem.Text = "İşletim Sistemi";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(97, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Ram Slot Sayısı";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -164,15 +145,6 @@ namespace ComputerInfo
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Ram Boyutu";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 272);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Disk bilgileri";
             // 
             // label5
             // 
@@ -222,9 +194,9 @@ namespace ComputerInfo
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(-12, 270);
+            this.dataGridView1.Location = new System.Drawing.Point(-1, 299);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(800, 179);
+            this.dataGridView1.Size = new System.Drawing.Size(1289, 150);
             this.dataGridView1.TabIndex = 17;
             // 
             // label10
@@ -241,14 +213,14 @@ namespace ComputerInfo
             this.monitor.AutoSize = true;
             this.monitor.Location = new System.Drawing.Point(376, 53);
             this.monitor.Name = "monitor";
-            this.monitor.Size = new System.Drawing.Size(72, 13);
+            this.monitor.Size = new System.Drawing.Size(77, 13);
             this.monitor.TabIndex = 19;
-            this.monitor.Text = "Monitör Sayısı";
+            this.monitor.Text = "Monitör Bilgileri";
             // 
             // monitorinf
             // 
             this.monitorinf.AutoSize = true;
-            this.monitorinf.Location = new System.Drawing.Point(530, 53);
+            this.monitorinf.Location = new System.Drawing.Point(809, 64);
             this.monitorinf.Name = "monitorinf";
             this.monitorinf.Size = new System.Drawing.Size(72, 13);
             this.monitorinf.TabIndex = 20;
@@ -262,11 +234,29 @@ namespace ComputerInfo
             this.dataGridView2.Size = new System.Drawing.Size(1289, 195);
             this.dataGridView2.TabIndex = 21;
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(479, 53);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(809, 121);
+            this.listBox1.TabIndex = 22;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(479, 180);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(809, 121);
+            this.listBox2.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 662);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.monitorinf);
             this.Controls.Add(this.monitor);
@@ -282,16 +272,13 @@ namespace ComputerInfo
             this.Controls.Add(this.MotherboardSerial);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.MotherboardMaker);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.HddSize);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.RamSizeLabel);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.RamSlotNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
-            this.Text = " ";
+            this.Text = "Donanım Bilgileri";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -304,7 +291,6 @@ namespace ComputerInfo
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label RamSlotNumber;
         private System.Windows.Forms.Label RamSizeLabel;
         private System.Windows.Forms.Label HddSize;
         private System.Windows.Forms.Label MotherboardMaker;
@@ -312,9 +298,7 @@ namespace ComputerInfo
         private System.Windows.Forms.Label GpuName;
         private System.Windows.Forms.Label Cpu;
         private System.Windows.Forms.Label OperatingSystem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -325,6 +309,8 @@ namespace ComputerInfo
         private System.Windows.Forms.Label monitor;
         private System.Windows.Forms.Label monitorinf;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }
 
